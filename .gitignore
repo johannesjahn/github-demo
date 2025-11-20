@@ -1,0 +1,40 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.ko
+
+# Test binaries
+*.test
+
+# Output of the go generate command
+*.pb.go
+
+# IDE files
+.idea/
+.vscode/
+
+# Editor directories and files
+.DS_Store
+*~
+*.swp
+.terraform/
+
+# Go build cache
+.cache/
+
+# Local data and logs
+*.log
+*.db
+
+# Environment variables
+.env
+
+# Dependencies
+vendor/
+pkg/
+
+# Executables
+/demo
