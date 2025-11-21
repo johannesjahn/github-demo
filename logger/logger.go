@@ -37,7 +37,7 @@ func Println(v ...interface{}) {
 func Fatalf(format string, v ...interface{}) {
 	timestamp := time.Now().Format("2006/01/02 15:04:05")
 	message := fmt.Sprintf(format, v...)
-	colorLogger.Printf("%s%s%s %s%s%s\n", colorCyan, timestamp, colorReset, colorYellow, message, colorReset)
+	colorLogger.Printf("%s%s%s %s%s%s", colorCyan, timestamp, colorReset, colorYellow, message, colorReset)
 	os.Exit(1)
 }
 
