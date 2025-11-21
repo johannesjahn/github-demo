@@ -18,7 +18,8 @@ const (
 
 var (
 	// Create a custom logger without any flags (no timestamp, no prefix)
-	colorLogger = log.New(os.Stderr, "", 0)
+	// Using os.Stdout for regular logs
+	colorLogger = log.New(os.Stdout, "", 0)
 )
 
 // Println prints a colored log message with timestamp in cyan and message in green
@@ -36,7 +37,8 @@ func Println(v ...interface{}) {
 func Fatalf(format string, v ...interface{}) {
 	timestamp := time.Now().Format("2006/01/02 15:04:05")
 	message := fmt.Sprintf(format, v...)
-	colorLogger.Fatalf("%s%s%s %s%s%s", colorCyan, timestamp, colorReset, colorYellow, message, colorReset)
+	colorLogger.Printf("%s%s%s %s%s%s\n", colorCyan, timestamp, colorReset, colorYellow, message, colorReset)
+	os.Exit(1)
 }
 
 // SetOutput sets the output destination for the logger
