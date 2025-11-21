@@ -20,7 +20,3 @@ func jokeHandler(jokeService joke.Service) http.HandlerFunc {
 		}
 	}
 }
-
-func Register(mux *http.ServeMux, jokeService joke.Service) {
-	mux.HandleFunc("/joke", jokeHandler(jokeService))
-}
