@@ -1,7 +1,6 @@
 package joke
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -9,21 +8,27 @@ func Test_jokeService_GetJoke(t *testing.T) {
 	tests := []struct {
 		name string
 		s    Service
-		want Joke
 	}{
 		{
-			name: "default joke",
+			name: "returns one of the jokes from database",
 			s:    NewService(),
-			want: Joke{
-				ID:    "1",
-				Value: "Why don't scientists trust atoms? Because they make up everything!",
-			},
 		},
 	}
+	
+	validJokes := map[string]bool{
+		"1": true,
+		"2": true,
+		"3": true,
+	}
+	
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.s.GetJoke(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("jokeService.GetJoke() = %v, want %v", got, tt.want)
+			got := tt.s.GetJoke()
+			if !validJokes[got.ID] {
+				t.Errorf("jokeService.GetJoke() returned joke with invalid ID = %v", got.ID)
+			}
+			if got.Value == "" {
+				t.Errorf("jokeService.GetJoke() returned joke with empty value")
 			}
 		})
 	}
