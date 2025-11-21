@@ -35,8 +35,11 @@ var jokeDb = []Joke{
 	},
 }
 
-func (s *jokeService) GetJoke() Joke {
+func init() {
 	rand.Seed(time.Now().UnixNano())
+}
+
+func (s *jokeService) GetJoke() Joke {
 	randomIndex := rand.Intn(len(jokeDb))
 	return jokeDb[randomIndex]
 }
