@@ -2,16 +2,16 @@ package controllers
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 
 	"johannes-jahn.com/demo/joke"
+	"johannes-jahn.com/demo/logger"
 )
 
 func jokeHandler(jokeService joke.Service) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		log.Default().Println("jokeHandler called from", r.RemoteAddr)
+		logger.Println("jokeHandler called from", r.RemoteAddr)
 		joke := jokeService.GetJoke()
 
 		w.Header().Set("Content-Type", "application/json")
