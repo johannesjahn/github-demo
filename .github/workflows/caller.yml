@@ -1,0 +1,14 @@
+name: Caller Workflow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable.yml
+    with:
+      username: "johannesjahn"
+    # You can also pass secrets if defined in the reusable workflow
+    # secrets: inherit
